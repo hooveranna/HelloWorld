@@ -54,5 +54,5 @@ if __name__ == '__main__':
     print("we're to where we got stuck before")
     sure_args = parsing.parse_args()
     port = sure_args.port
-    print("are we at least doing this? port is " + port)
+    print("are we at least doing this? port is " + str(port))
     echoserver(port)
