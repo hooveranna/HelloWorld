@@ -9,7 +9,7 @@ import argparse
 
 host = 'localhost'
 
-# this handler will be run for each incoming connection in dedicated greenlet
+
 def client(port):
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -29,11 +29,12 @@ def client(port):
         ## look for response
         char_received = 0
         while char_received < len(message):
-            receiving = sok.recv(16)
+            receiving = sok.recv(1024)
             char_received += len(receiving)
             print("received " + receiving)
 
         ## required print statement for assignment
+        ## THIS PRINTS THE WRONG THING CURRENTLY
         print("A reply received from: " + client_addr)
     except socket.errno, e:
         print("Socket error: " + str(e))
