@@ -45,5 +45,5 @@ if __name__ == '__main__':
     parsing = argparse.ArgumentParser(description ='echo server')
     parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
     sure_args = parsing.parse_args()
-    port = sure_args.port()
+    port = sure_args.port
     client(port)
