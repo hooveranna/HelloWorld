@@ -17,7 +17,7 @@ def client():
     host = socket.gethostname()
 
     ## SAME SPOT HERE, THIS IS WHERE THE PROBLEM IS hello
-    client_addr = ('10.1.2.3', 12397)
+    client_addr = ('10.0.0.2', 12397)
     print("starting client on server: ")
     print(client_addr)
 
