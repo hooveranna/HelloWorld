@@ -20,8 +20,9 @@ def echoserver(port):
     print("ill add a million of these, pre gethostname")
     ## gives address of current server
     host = socket.gethostname()
+
     ## THIS IS THE LINE WE'RE MESSING WITH
-    echo_addr = ('127.0.0.1', port)
+    echo_addr = ('', 12397)
 
     print("starting echo on server: ")
     print(echo_addr)
@@ -41,8 +42,7 @@ def echoserver(port):
             ## STEP 3: server prints out message, number, IP of client
             print("message number:" + str(num_message))
             print("message: " + data)
-            print("client address: ")
-            print(client_address)
+            print("client address: ", client_address)
             ## STEP 4: server replies message back to client
             client.send(data)
         client.close()
