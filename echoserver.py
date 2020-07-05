@@ -38,9 +38,10 @@ def echoserver(port):
             ## STEP 2: server numbers the message
             num_message = num_message + 1
             ## STEP 3: server prints out message, number, IP of client
-            print("message number:" + num_message)
+            print("message number:" + str(num_message))
             print("message: " + data)
-            print("client address: " + client_address)
+            print("client address: ")
+            print(client_address)
             ## STEP 4: server replies message back to client
             client.send(data)
         client.close()
