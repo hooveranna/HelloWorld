@@ -17,6 +17,7 @@ def client(port):
     ## I DON'T THINK THIS IS RIGHT FOR MY CURRENT GOAL SO GOTTA FIX THAT
     host = socket.gethostname()
     client_addr = (host, port)
+    print("starting client on server" + client_addr)
     sok.connect(client_addr)
 
     ## actually sending the data to the server

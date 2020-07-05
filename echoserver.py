@@ -23,12 +23,12 @@ def echoserver(port):
     host = socket.gethostname()
     echo_addr = (host, port)
 
+    print("starting echo on server" + echo_addr)
     sok.bind(echo_addr)
-
+    num_message = 0
+    print("listening for client now")
     ## backlog maximum is usually 5
     sok.listen(5)
-
-    num_message = 0
 
     while True:
         client, client_address = sok.accept()
