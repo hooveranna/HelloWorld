@@ -18,7 +18,7 @@ def echoserver(port):
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
+    print("ill add a million of these, pre gethostname")
     ## gives address of current server
     host = socket.gethostname()
     echo_addr = (host, port)
@@ -52,4 +52,5 @@ if __name__ == '__main__':
     ## this is where we're currently getting stuck
     sure_args = parsing.parse_args()
     port = sure_args.port
+    print("are we at least doing this? port is " + port)
     echoserver(port)
