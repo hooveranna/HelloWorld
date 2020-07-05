@@ -14,12 +14,12 @@ import argparse
 ## host = 'localhost'
 
 
-def echoserver(port):
+def echoserver():
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("ill add a million of these, pre gethostname")
     ## gives address of current server
-    host = socket.gethostname()
+    ## host = socket.gethostname()
 
     ## THIS IS THE LINE WE'RE MESSING WITH
     echo_addr = ('', 12397)
@@ -39,21 +39,31 @@ def echoserver(port):
         if data:
             ## STEP 2: server numbers the message
             num_message = num_message + 1
+
+            ## THIS IS WHERE THE DECODING WILL HAPPEN
+            ## for each char in data
+                ## convert to int, subtract key value, convert to char
+
             ## STEP 3: server prints out message, number, IP of client
             print("message number:" + str(num_message))
             print("message: " + data)
             print("client address: ", client_address)
             ## STEP 4: server replies message back to client
+            ## THIS IS WHERE THE ENCODING WILL HAPPEN
+            ## for each char in message
+                ## convert to int, add key value, convert to char
+
+
             client.send(data)
         client.close()
 
 
 if __name__ == '__main__':
     print("is this thing even on")
-    parsing = argparse.ArgumentParser(description ='echo server')
-    parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
+    ##parsing = argparse.ArgumentParser(description ='echo server')
+    ##parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
     ## this is where we're currently getting stuck
-    sure_args = parsing.parse_args()
-    port = sure_args.port
-    print("are we at least doing this? port is " + str(port))
-    echoserver(port)
+    ##sure_args = parsing.parse_args()
+    ##port = sure_args.port
+    ##print("are we at least doing this? port is " + str(port))
+    echoserver()

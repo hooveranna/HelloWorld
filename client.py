@@ -17,7 +17,7 @@ def client(port):
     host = socket.gethostname()
 
     ## SAME SPOT HERE, THIS IS WHERE THE PROBLEM IS
-    client_addr = ('127.0.0.1', 12397)
+    client_addr = (host, 12397)
     print("starting client on server: ")
     print(client_addr)
 
@@ -28,6 +28,11 @@ def client(port):
         ## get data from terminal
         print("type message to send: ")
         message = input()
+
+        ## THIS IS WHERE THE ENCODING WILL HAPPEN
+        ## for each char in message
+            ## convert to int, add key value, convert to char
+            
         ## send to echo server
         sok.sendall(message)
 
