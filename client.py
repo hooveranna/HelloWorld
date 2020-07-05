@@ -16,7 +16,7 @@ def client(port):
     ## getting IP of server
     ## I DON'T THINK THIS IS RIGHT FOR MY CURRENT GOAL SO GOTTA FIX THAT
     host = socket.gethostname()
-    client_addr = (host, port)
+    client_addr = ('localhost', port)
     print("starting client on server: ")
     print(client_addr)
 
