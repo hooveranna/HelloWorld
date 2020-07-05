@@ -20,7 +20,8 @@ def echoserver(port):
     sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     ## gives address of current server
-    echo_addr = ('', port)
+    host = socket.gethostname()
+    echo_addr = (host, port)
 
     sok.bind(echo_addr)
 
