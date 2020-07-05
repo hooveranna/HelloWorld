@@ -11,7 +11,7 @@ import socket
 import sys
 import argparse
 
-host = 'localhost'
+## host = 'localhost'
 
 
 def echoserver(port):
@@ -20,7 +20,7 @@ def echoserver(port):
     sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     ## gives address of current server
-    echo_addr = (host, port)
+    echo_addr = ('', port)
 
     sok.bind(echo_addr)
 

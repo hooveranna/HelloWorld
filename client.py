@@ -7,7 +7,7 @@ import socket
 import sys
 import argparse
 
-host = 'localhost'
+## host = 'localhost'
 
 
 def client(port):
@@ -15,6 +15,7 @@ def client(port):
 
     ## getting IP of server
     ## I DON'T THINK THIS IS RIGHT FOR MY CURRENT GOAL SO GOTTA FIX THAT
+    host = socket.gethostname()
     client_addr = (host, port)
     sok.connect(client_addr)
 
@@ -43,7 +44,8 @@ def client(port):
 
 if __name__ == '__main__':
     parsing = argparse.ArgumentParser(description ='echo server')
-    parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
+    ## IF i have time id like to take out the requirement to enter a port
+    parsing.add_argument('--port',action="store",dest="port", type=int, required=True)
     sure_args = parsing.parse_args()
     port = sure_args.port
     client(port)
