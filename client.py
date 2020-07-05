@@ -19,7 +19,7 @@ def client(port):
     client_addr = (host, port)
     print("starting client on server: ")
     print(client_addr)
-    
+
     sok.connect(client_addr)
 
     ## actually sending the data to the server
@@ -39,7 +39,8 @@ def client(port):
 
         ## required print statement for assignment
         ## THIS PRINTS THE WRONG THING CURRENTLY
-        print("A reply received from: " + client_addr)
+        print("A reply received from: ")
+        print(client_addr)
     except socket.errno, e:
         print("Socket error: " + str(e))
     finally:
