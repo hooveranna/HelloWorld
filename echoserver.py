@@ -16,14 +16,14 @@ import argparse
 
 def echoserver(port):
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print("directly before setsockopt")
     sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("ill add a million of these, pre gethostname")
     ## gives address of current server
     host = socket.gethostname()
     echo_addr = (host, port)
 
-    print("starting echo on server" + echo_addr)
+    print("starting echo on server: ")
+    print(echo_addr)
     sok.bind(echo_addr)
     num_message = 0
     print("listening for client now")
@@ -51,7 +51,6 @@ if __name__ == '__main__':
     parsing = argparse.ArgumentParser(description ='echo server')
     parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
     ## this is where we're currently getting stuck
-    print("we're to where we got stuck before")
     sure_args = parsing.parse_args()
     port = sure_args.port
     print("are we at least doing this? port is " + str(port))
