@@ -16,11 +16,10 @@ def client(port):
     ## getting IP of server
     ## I DON'T THINK THIS IS RIGHT FOR MY CURRENT GOAL SO GOTTA FIX THAT
     host = socket.gethostname()
-    client_addr = ('localhost', port)
+    client_addr = ('127.0.0.1', port)
     print("starting client on server: ")
     print(client_addr)
-    print >> sys.stderr, 'starting up on %s port %s' % client_addr
-    
+
     sok.connect(client_addr)
 
     ## actually sending the data to the server

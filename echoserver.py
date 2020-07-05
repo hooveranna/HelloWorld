@@ -21,11 +21,10 @@ def echoserver(port):
     ## gives address of current server
     host = socket.gethostname()
     ## THIS IS THE LINE WE'RE MESSING WITH
-    echo_addr = ('', port)
+    echo_addr = ('127.0.0.1', port)
 
     print("starting echo on server: ")
     print(echo_addr)
-    print >> sys.stderr, 'starting up on %s port %s' % echo_addr
     sok.bind(echo_addr)
     num_message = 0
     print("listening for client now")
