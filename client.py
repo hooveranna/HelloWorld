@@ -19,7 +19,8 @@ def client(port):
     client_addr = ('localhost', port)
     print("starting client on server: ")
     print(client_addr)
-
+    print >> sys.stderr, 'starting up on %s port %s' % client_addr
+    
     sok.connect(client_addr)
 
     ## actually sending the data to the server

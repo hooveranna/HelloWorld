@@ -16,7 +16,7 @@ import argparse
 
 def echoserver(port):
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    ## sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("ill add a million of these, pre gethostname")
     ## gives address of current server
     host = socket.gethostname()
@@ -25,6 +25,7 @@ def echoserver(port):
 
     print("starting echo on server: ")
     print(echo_addr)
+    print >> sys.stderr, 'starting up on %s port %s' % echo_addr
     sok.bind(echo_addr)
     num_message = 0
     print("listening for client now")
