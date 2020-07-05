@@ -10,14 +10,14 @@ import argparse
 ## host = 'localhost'
 
 
-def client(port):
+def client():
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     ## getting IP of server
     host = socket.gethostname()
 
     ## SAME SPOT HERE, THIS IS WHERE THE PROBLEM IS
-    client_addr = (host, 12397)
+    client_addr = ('10.1.2.3', 12397)
     print("starting client on server: ")
     print(client_addr)
 
@@ -32,7 +32,7 @@ def client(port):
         ## THIS IS WHERE THE ENCODING WILL HAPPEN
         ## for each char in message
             ## convert to int, add key value, convert to char
-            
+
         ## send to echo server
         sok.sendall(message)
 
@@ -53,9 +53,4 @@ def client(port):
         sok.close()
 
 if __name__ == '__main__':
-    parsing = argparse.ArgumentParser(description ='echo server')
-    ## IF i have time id like to take out the requirement to enter a port
-    parsing.add_argument('--port',action="store",dest="port", type=int, required=True)
-    sure_args = parsing.parse_args()
-    port = sure_args.port
-    client(port)
+    client()
