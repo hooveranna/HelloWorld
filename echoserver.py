@@ -47,9 +47,11 @@ def echoserver(port):
 
 
 if __name__ == '__main__':
+    print("is this thing even on")
     parsing = argparse.ArgumentParser(description ='echo server')
     parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
     ## this is where we're currently getting stuck
+    print("we're to where we got stuck before")
     sure_args = parsing.parse_args()
     port = sure_args.port
     print("are we at least doing this? port is " + port)
