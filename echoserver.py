@@ -16,7 +16,7 @@ import argparse
 
 def echoserver(port):
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    ## sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("ill add a million of these, pre gethostname")
     ## gives address of current server
     host = socket.gethostname()
