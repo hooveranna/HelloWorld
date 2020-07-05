@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-"""Simple server that listens on port 16000 and echos back every input to the client.
-Connect to it with:
-  telnet 127.0.0.1 16000
-Terminate the connection by terminating telnet (typically Ctrl-] and then 'quit').
+"""
 1- server receives messages from client.py
 2- server numbers the messages
 3- server prints out the message number, the message itself, and
@@ -10,31 +7,41 @@ Terminate the connection by terminating telnet (typically Ctrl-] and then 'quit'
 4- server replies the message back to the client
 """
 from __future__ import print_function
-from gevent.server import StreamServer
 
 
-# this handler will be run for each incoming connection in a dedicated greenlet
-def echo(socket, address):
-    print('New connection from %s:%s' % address)
-    socket.sendall(b'Welcome to the echo server! Type quit to exit.\r\n')
-    # using a makefile because we want to use readline()
-    rfileobj = socket.makefile(mode='rb')
+
+# this handler will be run for each incoming connection in dedicated greenlet
+def echoserver(port):
+    sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    sok.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+    ## gives address of current server
+    echo_addr = (host, port)
+
+    sok.bind(echo_addr)
+
+    ## NOT SURE BOUT THIS LINE
+    sok.listen(backlog)
+
     while True:
-        line = rfileobj.readline()
-        if not line:
-            print("client disconnected")
-            break
-        if line.strip().lower() == b'quit':
-            print("client quit")
-            break
-        socket.sendall(line)
-        print("echoed %r" % line)
-    rfileobj.close()
+        client, client_address = sok.accept()
+        ## STEP 1
+        data = client.recv()
+        if data:
+
+            ## STEP 3
+            print("message number:" + )
+            print("message: " + data)
+            print("client address: " + client_address)
+            ## STEP 4
+            client.send(data)
+        client.close()
+
 
 if __name__ == '__main__':
-    # to make the server use SSL, pass certfile and keyfile arguments to the constructor
-    server = StreamServer(('127.0.0.1', 16000), echo)
-    # to start the server asynchronously, use its start() method;
-    # we use blocking serve_forever() here because we have no other jobs
-    print('Starting echo server on port 16000')
-    server.serve_forever()
+    parsing = argparse.ArgumentParser(description ='echo server')
+    parsing.add_argument('--port', action="store", dest="port", type=int, required=True)
+    sure_args = parsing.parse_args()
+    port = sure_args.port
+    echoserver(port)
