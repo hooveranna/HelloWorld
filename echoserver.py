@@ -20,7 +20,8 @@ def echoserver(port):
     print("ill add a million of these, pre gethostname")
     ## gives address of current server
     host = socket.gethostname()
-    echo_addr = (host, port)
+    ## THIS IS THE LINE WE'RE MESSING WITH
+    echo_addr = ('', port)
 
     print("starting echo on server: ")
     print(echo_addr)
