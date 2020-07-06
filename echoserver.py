@@ -42,7 +42,7 @@ def echoserver():
 
             for i in range(0, len(data)):
                 temp_int = ord(data[i]) - integer_key_value
-                print("int value at " + i + " is: " + temp_int)
+                print("int value at " + str(i) + " is: " + str(temp_int))
                 data.replace(data[i], chr(temp_int))
 
             ## THIS IS WHERE THE DECODING WILL HAPPEN

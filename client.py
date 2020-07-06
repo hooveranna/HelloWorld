@@ -31,7 +31,7 @@ def client():
         ## encoding message
         for i in range(0, len(message)):
             temp_int = ord(message[i]) + integer_key_value
-            print("int value at " + i + " is: " + temp_int)
+            print("int value at " + str(i) + " is: " + str(temp_int))
             message.replace(message[i], chr(temp_int))
 
         print("Encoded message: " + message)
