@@ -40,6 +40,11 @@ def echoserver():
             ## STEP 2: server numbers the message
             num_message = num_message + 1
 
+            for i in range(0, len(data)):
+                temp_int = ord(data[i]) - integer_key_value
+                print("int value at " + i + " is: " + temp_int)
+                data.replace(data[i], chr(temp_int))
+
             ## THIS IS WHERE THE DECODING WILL HAPPEN
             ## for each char in data
                 ## convert to int, subtract key value, convert to char

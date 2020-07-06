@@ -8,7 +8,7 @@ import sys
 import argparse
 
 ## host = 'localhost'
-
+integer_key_value = 3
 
 def client():
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -28,10 +28,13 @@ def client():
         ## get data from terminal
         message = raw_input("type message to send: ")
 
-        ## THIS IS WHERE THE ENCODING WILL HAPPEN
-        ## for each char in message
-            ## convert to int, add key value, convert to char
+        ## encoding message
+        for i in range(0, len(message)):
+            temp_int = ord(message[i]) + integer_key_value
+            print("int value at " + i + " is: " + temp_int)
+            message.replace(message[i], chr(temp_int))
 
+        print("Encoded message: " + message)
         ## send to echo server
         sok.sendall(message)
 
@@ -40,7 +43,7 @@ def client():
         while char_received < len(message):
             receiving = sok.recv(1024)
             char_received += len(receiving)
-            print("received " + receiving)
+            print("received: " + receiving)
 
         echo, echo_address = sok.getpeername()
         ## required print statement for assignment
