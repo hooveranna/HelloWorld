@@ -14,10 +14,10 @@ def client():
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     ## getting IP of server
-    host = socket.gethostname()
+    host = socket.getfqdn()
     print("host: " + host)
     ## SAME SPOT HERE, THIS IS WHERE THE PROBLEM IS hello
-    client_addr = (host, 12397)
+    client_addr = (socket.gethostbyname(host), 12397)
     print("starting client on server: ")
     print(client_addr)
 
