@@ -40,13 +40,13 @@ def echoserver():
             ## STEP 2: server numbers the message
             num_message = num_message + 1
             ## decoding the message
-        data_temp = list(data)
-        ## encoding message
-        for i in range(0, len(data)):
-            temp_int = ord(data[i]) - integer_key_value
-            print("int value at "+str(i)+": "+str(temp_int) + ", char: " + chr(temp_int))
-            data_temp[i] = chr(temp_int)
-        data = "".join(data_temp)
+            data_temp = list(data)
+            ## encoding message
+            for i in range(0, len(data)):
+                temp_int = ord(data[i]) - integer_key_value
+                print("int value at "+str(i)+": "+str(temp_int) + ", char: " + chr(temp_int))
+                data_temp[i] = chr(temp_int)
+            data = "".join(data_temp)
 
             ## THIS IS WHERE THE DECODING WILL HAPPEN
             ## for each char in data
