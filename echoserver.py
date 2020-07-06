@@ -39,11 +39,13 @@ def echoserver():
         if data:
             ## STEP 2: server numbers the message
             num_message = num_message + 1
-
+            ## decoding the message
+            data_temp = " "
             for i in range(0, len(data)):
                 temp_int = ord(data[i]) - integer_key_value
                 print("int value at " + str(i) + " is: " + str(temp_int))
-                data.replace(data[i], chr(temp_int))
+                data_temp = data.replace(data[i], chr(temp_int))
+                data = str(data_temp)
 
             ## THIS IS WHERE THE DECODING WILL HAPPEN
             ## for each char in data
@@ -54,9 +56,11 @@ def echoserver():
             print("message: " + data)
             print("client address: ", client_address)
             ## STEP 4: server replies message back to client
-            ## THIS IS WHERE THE ENCODING WILL HAPPEN
-            ## for each char in message
-                ## convert to int, add key value, convert to char
+            for i in range(0, len(data)):
+                temp_int = ord(data[i]) + integer_key_value
+                print("int value at " + str(i) + " is: " + str(temp_int))
+                data_temp = data.replace(data[i], chr(temp_int))
+                data = str(data_temp)
 
 
             client.send(data)
