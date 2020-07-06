@@ -27,16 +27,17 @@ def client():
     try:
         ## get data from terminal
         message = raw_input("type message to send: ")
-        message_encoded = " "
+        message_temp = " "
         ## encoding message
         for i in range(0, len(message)):
             temp_int = ord(message[i]) + integer_key_value
             print("int value at "+str(i)+": "+str(temp_int) + ", char: " + chr(temp_int))
-            message_encoded = message.replace(message[i], chr(temp_int))
+            message_temp = message.replace(message[i], chr(temp_int))
+            message = str(message_temp)
 
-        print("Encoded message: " + message_encoded)
+        print("Encoded message: " + message)
         ## send to echo server
-        sok.sendall(message_encoded)
+        sok.sendall(message)
 
         ## look for response
         char_received = 0
