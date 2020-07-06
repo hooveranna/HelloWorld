@@ -45,7 +45,7 @@ def echoserver():
                 ## convert to int, subtract key value, convert to char
 
             ## STEP 3: server prints out message, number, IP of client
-            print("message number:" + str(num_message))
+            print("message number: " + str(num_message))
             print("message: " + data)
             print("client address: ", client_address)
             ## STEP 4: server replies message back to client

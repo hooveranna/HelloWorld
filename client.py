@@ -44,8 +44,7 @@ def client():
 
         echo, echo_address = sok.getpeername()
         ## required print statement for assignment
-        print("A reply received from: ")
-        print(echo_address)
+        print("A reply received from: ", echo)
     except socket.errno, e:
         print("Socket error: " + str(e))
     finally:
