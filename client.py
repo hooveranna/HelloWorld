@@ -17,7 +17,7 @@ def client():
     host = socket.gethostname()
 
     ## SAME SPOT HERE, THIS IS WHERE THE PROBLEM IS hello
-    client_addr = ('10.0.2.255', 12397)
+    client_addr = ('10.XX.XX.XX', 12397)
     print("starting client on server: ")
     print(client_addr)
 
@@ -43,10 +43,10 @@ def client():
             char_received += len(receiving)
             print("received " + receiving)
 
+        echo, echo_address = sok.getpeername()
         ## required print statement for assignment
-        ## THIS PRINTS THE WRONG THING CURRENTLY
         print("A reply received from: ")
-        print(client_addr)
+        print(echo_address)
     except socket.errno, e:
         print("Socket error: " + str(e))
     finally:
