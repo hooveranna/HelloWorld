@@ -43,7 +43,7 @@ def echoserver():
             data_temp = " "
             for i in range(0, len(data)):
                 temp_int = ord(data[i]) - integer_key_value
-                print("int value at " + str(i) + " is: " + str(temp_int))
+                print("int value at "+str(i)+": "+str(temp_int) + ", char: " +chr(temp_int))
                 data_temp = data.replace(data[i], chr(temp_int))
                 data = str(data_temp)
 
@@ -58,7 +58,7 @@ def echoserver():
             ## STEP 4: server replies message back to client
             for i in range(0, len(data)):
                 temp_int = ord(data[i]) + integer_key_value
-                print("int value at " + str(i) + " is: " + str(temp_int))
+                print("int value at "+str(i)+": "+str(temp_int) + ", char: " +chr(temp_int))
                 data_temp = data.replace(data[i], chr(temp_int))
                 data = str(data_temp)
 
