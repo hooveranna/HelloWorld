@@ -12,7 +12,7 @@ import sys
 import argparse
 
 ## host = 'localhost'
-
+integer_key_value = 3
 
 def echoserver():
     sok = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
