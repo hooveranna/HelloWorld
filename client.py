@@ -26,8 +26,7 @@ def client():
     ## actually sending the data to the server
     try:
         ## get data from terminal
-        print("type message to send: ")
-        message = input()
+        message = input("type message to send: ")
 
         ## THIS IS WHERE THE ENCODING WILL HAPPEN
         ## for each char in message
