@@ -101,11 +101,14 @@ def run():
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format(hn2IP, ir23IP) ) )
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format('10.9.9.0/24', ir23IP) ) )
 
+	## C
+	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth2".format(hn4IP, ir43IP) ) ) ## NEW
+
 	## F
 	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn2IP, ir34IP) ) ) ## NEW
 	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn3IP, ir34IP) ) ) ## NEW
 
-	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format('10.5.5.0/24', ir34IP) ) )
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format('10.5.5.0/24', ir43IP) ) )
 
 	info( '*** Routing Table on Routers:\n' )
 	info( 'r1:\n')
