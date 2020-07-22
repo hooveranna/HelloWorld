@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.node import Node
@@ -8,30 +10,33 @@ r1IP = '10.2.2.1'
 r2IP = '10.4.4.1'
 r3IP = '10.6.6.1'
 ## NEW FOR Q2
-r4IP = ''
+r4IP = '10.8.8.1'
 
 ## interfaces for R1
 ir12IP = '10.9.9.1'
 ## interfaces for R2
 ir21IP = '10.9.9.2'
 ir23IP = '10.7.7.2'
-## NEW FOR Q2
-ir24IP = ''
 ## interfaces for R3
 ir32IP = '10.7.7.1'
+## NEW FOR Q2
+ir34IP = '10.5.5.1'
+## interfaces for R4
+## NEW FOR Q2
+ir43IP = '10.5.5.2'
 
 ## hosts
 h1IP = '10.2.2.2/24' ## host Sam
 h2IP = '10.4.4.4/24' ## host Emmy
 h3IP = '10.6.6.6/24' ## host Bob
 ## NEW FOR Q2
-h4IP = '/24' ## host Eve
+h4IP = '10.8.8.8/24' ## host Eve
 
 hn1IP = '10.2.2.0/24'
 hn2IP = '10.4.4.0/24'
 hn3IP = '10.6.6.0/24'
 ## NEW FOR Q2
-hn4IP = '.0/24'
+hn4IP = '10.8.8.0/24'
 
 class LinuxRouter( Node ):
 	def config( self, **params ):
@@ -63,8 +68,8 @@ class NetworkTopo( Topo ):
 			intfName2='r3-eth1', params2={ 'ip': ir32IP+pref } )
 		## NEW FOR Q2
 		self.addLink( h4, r4, intfName1='h4-eth0',intfName2='r4-eth0' )
-		self.addLink( r2, r4, intfName1='r2-eth ', params1={'ip' : ir24IP+pref },
-			intfName2='r4-eth1',params2={ 'ip' : ir42IP+pref } )
+		self.addLink( r3, r4, intfName1='r3-eth2', params1={'ip' : ir34IP+pref },
+			intfName2='r4-eth1',params2={ 'ip' : ir43IP+pref } )
 
 def run():
 	topo = NetworkTopo()
@@ -75,21 +80,32 @@ def run():
 	info( net['r2'].cmd("ifconfig r2-eth2 "+ir23IP+pref) )
 	info( net['r3'].cmd("ifconfig r3-eth1 "+ir32IP+pref) )
 	## NEW FOR Q2
-	info( net['r4'].cmd("ifconfig r4-eth  "+ir24IP+pref) )
+	info( net['r3'].cmd("ifconfig r3-eth2 "+ir34IP+pref) )
+	info( net['r4'].cmd("ifconfig r4-eth1 "+ir43IP+pref) )
 
 
+	## A
 	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format(hn2IP, ir21IP) ) )
 	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format(hn3IP, ir21IP) ) )
 	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format('10.7.7.0/24', ir21IP) ) )
 
+	## B
 	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth1".format(hn1IP, ir12IP) ) )
-	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth2".format(hn3IP, ir32IP) ) )
 
+	## E
+	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth2".format(hn3IP, ir32IP) ) )
+	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth2".format(hn4IP, ir32IP) ) ) ## NEW
+
+	## D
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format(hn1IP, ir23IP) ) )
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format(hn2IP, ir23IP) ) )
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format('10.9.9.0/24', ir23IP) ) )
-	## NEW FOR Q2
-	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn4IP, ir24IP) ) )
+
+	## F
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn2IP, ir34IP) ) ) ## NEW
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn3IP, ir34IP) ) ) ## NEW
+
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format('10.5.5.0/24', ir34IP) ) )
 
 	info( '*** Routing Table on Routers:\n' )
 	info( 'r1:\n')
