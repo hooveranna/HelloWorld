@@ -20,10 +20,10 @@ ir23IP = '10.7.7.2'
 ## interfaces for R3
 ir32IP = '10.7.7.1'
 ## NEW FOR Q2
-ir34IP = '10.5.5.1'
+ir24IP = '10.5.5.1'
 ## interfaces for R4
 ## NEW FOR Q2
-ir43IP = '10.5.5.2'
+ir42IP = '10.5.5.2'
 
 ## hosts
 h1IP = '10.2.2.2/24' ## host Sam
@@ -68,8 +68,8 @@ class NetworkTopo( Topo ):
 			intfName2='r3-eth1', params2={ 'ip': ir32IP+pref } )
 		## NEW FOR Q2
 		self.addLink( h4, r4, intfName1='h4-eth0',intfName2='r4-eth0' )
-		self.addLink( r3, r4, intfName1='r3-eth2', params1={'ip' : ir34IP+pref },
-			intfName2='r4-eth1',params2={ 'ip' : ir43IP+pref } )
+		self.addLink( r2, r4, intfName1='r2-eth3', params1={'ip' : ir24IP+pref },
+			intfName2='r4-eth1',params2={ 'ip' : ir42IP+pref } )
 
 def run():
 	topo = NetworkTopo()
@@ -80,35 +80,33 @@ def run():
 	info( net['r2'].cmd("ifconfig r2-eth2 "+ir23IP+pref) )
 	info( net['r3'].cmd("ifconfig r3-eth1 "+ir32IP+pref) )
 	## NEW FOR Q2
-	info( net['r3'].cmd("ifconfig r3-eth2 "+ir34IP+pref) )
-	info( net['r4'].cmd("ifconfig r4-eth1 "+ir43IP+pref) )
+	info( net['r3'].cmd("ifconfig r2-eth3 "+ir24IP+pref) )
+	info( net['r4'].cmd("ifconfig r4-eth1 "+ir42IP+pref) )
 
 
-	## A
 	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format(hn2IP, ir21IP) ) )
 	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format(hn3IP, ir21IP) ) )
+	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format(hn4IP, ir21IP) ) ) ## NEW
 	info( net['r1'].cmd( "ip route add to {0} via {1} dev r1-eth1".format('10.7.7.0/24', ir21IP) ) )
 
-	## B
 	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth1".format(hn1IP, ir12IP) ) )
 
-	## E
 	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth2".format(hn3IP, ir32IP) ) )
-	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth2".format(hn4IP, ir32IP) ) ) ## NEW
+	info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth3".format(hn4IP, ir42IP) ) ) ## NEW
+	##info( net['r2'].cmd( "ip route add to {0} via {1} dev r2-eth2".format(hn4IP, ir32IP) ) ) ## NEW
 
-	## D
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format(hn1IP, ir23IP) ) )
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format(hn2IP, ir23IP) ) )
+	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format(hn4IP, ir23IP) ) ) ## NEW
 	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth1".format('10.9.9.0/24', ir23IP) ) )
 
-	## C
-	info( net['r3'].cmd( "ip route add to {0} via {1} dev r3-eth2".format(hn4IP, ir43IP) ) ) ## NEW
+	## NEW
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn1IP, ir24IP) ) )
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn2IP, ir24IP) ) )
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn3IP, ir24IP) ) )
+	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format('10.5.5.0/24', ir42IP) ) )
 
-	## F
-	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn2IP, ir34IP) ) ) ## NEW
-	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format(hn3IP, ir34IP) ) ) ## NEW
 
-	info( net['r4'].cmd( "ip route add to {0} via {1} dev r4-eth1".format('10.5.5.0/24', ir43IP) ) )
 
 	info( '*** Routing Table on Routers:\n' )
 	info( 'r1:\n')
