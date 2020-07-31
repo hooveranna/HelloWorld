@@ -46,9 +46,9 @@ class NetworkTopo( Topo ):
 		ha = self.addHost( 'ada_a', MAC=hAMAC, defaultRoute='via '+s1IP )
 		hb = self.addHost( 'ada_b', MAC=hBMAC, defaultRoute='via '+s1IP )
 		hc = self.addHost( 'ada_c', MAC=hCMAC, defaultRoute='via '+s2IP )
-		hd = self.addHost( 'ada_a', MAC=hDMAC, defaultRoute='via '+s2IP )
-		he = self.addHost( 'ada_b', MAC=hEMAC, defaultRoute='via '+s3IP )
-		hf = self.addHost( 'ada_c', MAC=hFMAC, defaultRoute='via '+s3IP )
+		hd = self.addHost( 'ada_d', MAC=hDMAC, defaultRoute='via '+s2IP )
+		he = self.addHost( 'ada_e', MAC=hEMAC, defaultRoute='via '+s3IP )
+		hf = self.addHost( 'ada_f', MAC=hFMAC, defaultRoute='via '+s3IP )
 
 		self.addLink( ha, s1, intfName1='ha-eth0',intfName2='s1-eth0' )
 		self.addLink( hb, s1, intfName1='hb-eth0',intfName2='s1-eth1' )
