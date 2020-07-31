@@ -51,35 +51,35 @@ class NetworkTopo( Topo ):
 		hf = self.addHost( 'ada_c', MAC=hCMAC, defaultRoute='via '+s2IP )
 
 		self.addLink( ha, s1, intfName1='ha-eth0',intfName2='s1-eth0' )
-		self.addLink( hb, s1, intfName1='hb-eth0',intfName2='s1-eth0' )
+		self.addLink( hb, s1, intfName1='hb-eth0',intfName2='s1-eth1' )
 		self.addLink( hc, s2, intfName1='hc-eth0',intfName2='s2-eth0' )
-		self.addLink( hd, s2, intfName1='hd-eth0',intfName2='s2-eth0' )
+		self.addLink( hd, s2, intfName1='hd-eth0',intfName2='s2-eth1' )
 		self.addLink( he, s3, intfName1='he-eth0',intfName2='s3-eth0' )
-		self.addLink( hf, s3, intfName1='hf-eth0',intfName2='s3-eth0' )
+		self.addLink( hf, s3, intfName1='hf-eth0',intfName2='s3-eth1' )
 
-		self.addLink( s1, s2, intfName1='s1-eth1', params1={'ip' : ir12IP+pref },
-			intfName2='s2-eth1', params2={ 'ip' : ir21IP+pref } )
-		self.addLink( s2, s3, intfName1='s2-eth2', params={ 'ip': ir23IP+pref },
-			intfName2='s3-eth1', params2={ 'ip': ir32IP+pref } )
+		self.addLink( s1, s2, intfName1='s1-eth2', params1={'ip' : ir12IP+pref },
+			intfName2='s2-eth2', params2={ 'ip' : ir21IP+pref } )
+		self.addLink( s2, s3, intfName1='s2-eth3', params={ 'ip': ir23IP+pref },
+			intfName2='s3-eth2', params2={ 'ip': ir32IP+pref } )
 
 def run():
 	topo = NetworkTopo()
 	net = Mininet( topo=topo )
 	net.start()
-	info( net['s1'].cmd("ifconfig s1-eth1 "+ir12IP+pref) )
-	info( net['s2'].cmd("ifconfig s2-eth1 "+ir21IP+pref) )
-	info( net['s2'].cmd("ifconfig s2-eth2 "+ir23IP+pref) )
-	info( net['s3'].cmd("ifconfig s3-eth1 "+ir32IP+pref) )
+	info( net['s1'].cmd("ifconfig s1-eth2 "+ir12IP+pref) )
+	info( net['s2'].cmd("ifconfig s2-eth2 "+ir21IP+pref) )
+	info( net['s2'].cmd("ifconfig s2-eth3 "+ir23IP+pref) )
+	info( net['s3'].cmd("ifconfig s3-eth2 "+ir32IP+pref) )
 
-	info( net['s1'].cmd( "ip route add to {0} via {1} dev s1-eth1".format(sn2IP, ir21IP) ) )
-	info( net['s1'].cmd( "ip route add to {0} via {1} dev s1-eth1".format(sn3IP, ir21IP) ) )
-	info( net['s1'].cmd( "ip route add to {0} via {1} dev s1-eth1".format('10.7.7.0/24', ir21IP) ) )
-	info( net['s2'].cmd( "ip route add to {0} via {1} dev s2-eth1".format(sn1IP, ir12IP) ) )
-	info( net['s2'].cmd( "ip route add to {0} via {1} dev s2-eth2".format(sn3IP, ir32IP) ) )
+	info( net['s1'].cmd( "ip route add to {0} via {1} dev s1-eth2".format(sn2IP, ir21IP) ) )
+	info( net['s1'].cmd( "ip route add to {0} via {1} dev s1-eth2".format(sn3IP, ir21IP) ) )
+	info( net['s1'].cmd( "ip route add to {0} via {1} dev s1-eth2".format('10.7.7.0/24', ir21IP) ) )
+	info( net['s2'].cmd( "ip route add to {0} via {1} dev s2-eth2".format(sn1IP, ir12IP) ) )
+	info( net['s2'].cmd( "ip route add to {0} via {1} dev s2-eth3".format(sn3IP, ir32IP) ) )
 
-	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth1".format(sn1IP, ir23IP) ) )
-	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth1".format(sn2IP, ir23IP) ) )
-	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth1".format('10.9.9.0/24', ir23IP) ) )
+	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth2".format(sn1IP, ir23IP) ) )
+	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth2".format(sn2IP, ir23IP) ) )
+	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth2".format('10.9.9.0/24', ir23IP) ) )
 
 
 
