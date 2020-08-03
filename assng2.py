@@ -7,12 +7,12 @@ from mininet.log import setLogLevel, info
 from mininet.cli import CLI
 pref = '/24'
 ## adapters
-hAMAC = ''
-hBMAC = ''
-hCMAC = ''
-hDMAC = ''
-hEMAC = ''
-hFMAC = ''
+hAMAC = 'ae:6a:ad:02:4f:d3'
+hBMAC = 'ae:6a:ad:02:4f:d4'
+hCMAC = 'ae:6a:ad:02:4f:d5'
+hDMAC = 'ae:6a:ad:02:4f:d6'
+hEMAC = 'ae:6a:ad:02:4f:d7'
+hFMAC = 'ae:6a:ad:02:4f:d8'
 
 ## interfaces
 ir12IP = '10.9.9.1'
@@ -80,8 +80,6 @@ def run():
 	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth2".format(sn1IP, ir23IP) ) )
 	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth2".format(sn2IP, ir23IP) ) )
 	info( net['s3'].cmd( "ip route add to {0} via {1} dev s3-eth2".format('10.9.9.0/24', ir23IP) ) )
-
-
 
 	info( '*** Routing Table on Routers:\n' )
 	info( 's1:\n')
