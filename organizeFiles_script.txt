@@ -1,0 +1,93 @@
+Script started on Sun 13 Sep 2020 11:20:56 PM EDT
+bash: /usr/local/sbin/findprinter: No such file or directory
+[?1034h[hoover.535@cse-sl6 HelloWorld]$ df
+Filesystem                                 1K-blocks        Used   Available Use% Mounted on
+devtmpfs                                     8115864           0     8115864   0% /dev
+tmpfs                                        8127420         652     8126768   1% /dev/shm
+tmpfs                                        8127420      436460     7690960   6% /run
+tmpfs                                        8127420           0     8127420   0% /sys/fs/cgroup
+/dev/mapper/rhel-root                       30832548    12294916    16948384  43% /
+/dev/sda2                                     499656      155544      307416  34% /boot
+/dev/sda1                                     524008       10064      513944   2% /boot/efi
+/dev/mapper/rhel-tmp                         5029504      692248     4058728  15% /tmp
+/dev/mapper/rhel-var                        10190100     2362508     7286920  25% /var
+/dev/mapper/rhel-var_log                    10190100      546220     9103208   6% /var/log
+/dev/mapper/rhel-var_tmp                     5029504       20592     4730384   1% /var/tmp
+/dev/mapper/rhel-var_log_audit               1998672     1475256      402176  79% /var/log/audit
+naotvs1socc.coeit.osu.edu:/nfs_share        10485760      222016    10263744   3% /share
+naotvs1socc.coeit.osu.edu:/nfs_home_2    26843545600 10684625088 16158920512  40% /home
+naotvs1socc.coeit.osu.edu:/nfs_opt_local   498073600    11571456   486502144   3% /opt/local
+naotvs1socc.coeit.osu.edu:/nfs_share/CSE  1317923648   349908992   968014656  27% /share/CSE
+tmpfs                                        1625488          76     1625412   1% /run/user/801851818
+tmpfs                                        1625488           8     1625480   1% /run/user/801995062
+tmpfs                                        1625488           8     1625480   1% /run/user/802089054
+tmpfs                                        1625488           0     1625488   0% /run/user/802064450
+tmpfs                                        1625488           8     1625480   1% /run/user/802082810
+tmpfs                                        1625488           0     1625488   0% /run/user/802081476
+tmpfs                                        1625488           0     1625488   0% /run/user/802097183
+tmpfs                                        1625488          60     1625428   1% /run/user/802131765
+tmpfs                                        1625488           0     1625488   0% /run/user/801942549
+tmpfs                                        1625488           0     1625488   0% /run/user/801988605
+tmpfs                                        1625488           0     1625488   0% /run/user/802168582
+tmpfs                                        1625488          68     1625420   1% /run/user/802109131
+tmpfs                                        1625488           0     1625488   0% /run/user/802005805
+[hoover.535@cse-sl6 HelloWorld]$ du
+4	./.git/refs/heads
+4	./.git/refs/tags
+4	./.git/refs/remotes/origin
+8	./.git/refs/remotes
+20	./.git/refs
+8	./.git/info
+44	./.git/hooks
+4	./.git/branches
+244	./.git/objects/pack
+4	./.git/objects/info
+8	./.git/objects/d3
+8	./.git/objects/2f
+12	./.git/objects/b4
+8	./.git/objects/0e
+8	./.git/objects/10
+8	./.git/objects/8f
+8	./.git/objects/84
+8	./.git/objects/0f
+4	./.git/objects/8c
+4	./.git/objects/32
+16	./.git/objects/f1
+8	./.git/objects/05
+352	./.git/objects
+12	./.git/logs/refs/remotes/origin
+16	./.git/logs/refs/remotes
+8	./.git/logs/refs/heads
+28	./.git/logs/refs
+36	./.git/logs
+496	./.git
+36	./.idea
+116	./Correct
+112	./mininet/__pycache__
+576	./mininet
+52	./test
+28	./__pycache__
+1412	.
+[hoover.535@cse-sl6 HelloWorld]$ cmp helloworld.txt hellotwo.txt
+helloworld.txt hellotwo.txt differ: byte 1, line 1
+[hoover.535@cse-sl6 HelloWorld]$ diff helloworld.txt hellotwo.txt
+1,5c1
+< #!/bin/bash
+< 
+< print("Hello World")
+< :x
+< 
+---
+> print("hello world")
+[hoover.535@cse-sl6 HelloWorld]$ cat helloworld.txt
+#!/bin/bash
+
+print("Hello World")
+:x
+
+[hoover.535@cse-sl6 HelloWorld]$ wc hellotwo.txt
+ 1  2 21 hellotwo.txt
+[hoover.535@cse-sl6 HelloWorld]$ exit
+exit
+
+Script done on Sun 13 Sep 2020 11:21:48 PM EDT
