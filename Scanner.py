@@ -196,6 +196,10 @@ class Scanner:
     def currentToken(self):
         return self.currentTokenCore
 
+
+    def currentWord(self):
+        return self.tokens[self.index]
+
     # If the current token is ID, return the string value of the identifier
     # Otherwise, return value does not matter
     def getID(self):
